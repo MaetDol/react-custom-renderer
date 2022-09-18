@@ -4,7 +4,8 @@
   "description": "try render JSX.. by custom renderer",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild ./src/index --bundle --outdir=dist"
+    "build": "node build.js",
+    "watch": "node build.js --watch"
   },
   "repository": {
     "type": "git",
