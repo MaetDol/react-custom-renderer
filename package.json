@@ -1,0 +1,22 @@
+{
+  "name": "react-custom-renderer",
+  "version": "0.0.1",
+  "description": "try render JSX.. by custom renderer",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild ./src/index --bundle --outdir=dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaetDol/react-custom-renderer.git"
+  },
+  "author": "MaetDol",
+  "license": "ISC",
+  "homepage": "https://github.com/MaetDol/react-custom-renderer#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.7"
+  }
+}
