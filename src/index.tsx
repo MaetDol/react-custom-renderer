@@ -1,29 +1,8 @@
-import type {
-  FunctionComponent,
-  PropsWithChildren,
-  ReactElement,
-  ReactNode,
-} from "react";
-import React, { Children } from "react";
-import { App } from "./components";
-import { isFragment, isHTMLElement, isReactElement } from "./type-gaurd/react";
-
-type NodeInfo<T> = {
-  node: T;
-  name: string;
-  props: PropsWithChildren;
-};
-
-type RendererBase<T> = (node: NodeInfo<T>, depth: number) => void;
-
-type RenderSet = Partial<{
-  default: RendererBase<ReactNode>;
-  falsy: RendererBase<undefined | null | boolean>;
-  primitive: RendererBase<string | number>;
-  html: RendererBase<ReactElement<PropsWithChildren>>;
-  fragment: RendererBase<ReactElement<PropsWithChildren>>;
-  component: RendererBase<ReactElement<PropsWithChildren, FunctionComponent>>;
-}>;
+import type { ReactNode } from 'react';
+import React, { Children } from 'react';
+import { App } from './components';
+import { isFragment, isHTMLElement, isReactElement } from './type-gaurd/react';
+import { RendererBase, RenderSet } from './types';
 
 function componentDepthFirstSearch(
   node: ReactNode,
@@ -36,7 +15,7 @@ function componentDepthFirstSearch(
 
   // Falsy value
   // 타는 경우가 없는 것 같기도?
-  if (node === undefined || node === null || typeof node === "boolean") {
+  if (node === undefined || node === null || typeof node === 'boolean') {
     useRender(render?.falsy)?.(
       {
         node,
@@ -49,7 +28,7 @@ function componentDepthFirstSearch(
   }
 
   // Primitive literal
-  if (typeof node === "string" || typeof node === "number") {
+  if (typeof node === 'string' || typeof node === 'number') {
     useRender(render?.primitive)?.(
       {
         node,
@@ -82,7 +61,7 @@ function componentDepthFirstSearch(
     useRender(render?.fragment)?.(
       {
         node,
-        name: "Fragment",
+        name: 'Fragment',
         props: node.props,
       },
       depth
@@ -110,7 +89,7 @@ function componentDepthFirstSearch(
 
 const consoleRenderer: RenderSet = {
   default: (node, depth) => {
-    console.log("  ".repeat(depth) + node.name);
+    console.log('  '.repeat(depth) + node.name);
   },
 };
 
