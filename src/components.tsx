@@ -1,4 +1,6 @@
-import React from "react";
+interface ChildProps {
+  children: React.ReactNode;
+}
 
 export function App() {
   return (
@@ -9,11 +11,11 @@ export function App() {
   );
 }
 
-export function Container({ children }) {
+export function Container({ children }: ChildProps) {
   return <>{children}</>;
 }
 
-export function Text({ children }) {
+export function Text({ children }: ChildProps) {
   return (
     <>
       <SubText>Apple</SubText>
@@ -24,6 +26,6 @@ export function Text({ children }) {
   );
 }
 
-function SubText({ children }) {
+function SubText({ children }: ChildProps) {
   return <>{children}</>;
 }
